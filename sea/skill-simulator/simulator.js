@@ -1,5 +1,5 @@
 const CONFIG = {
-    iconBasePath: "media/images/"
+    iconBasePath: "/media/images/"
 }, withAssetVersion = window.withAssetVersion || (e => e);
 
 // Locale detection removed — hardcoded to English (en-US) only, matching smoke-test.html.
@@ -7,7 +7,7 @@ const ACTIVE_LOCALE = "en-US";
 
 document.documentElement.setAttribute("lang", ACTIVE_LOCALE);
 
-const GRID_COLUMNS = 5, DATA_BASE_PATH = "sea/skill-simulator/data/", ICON_PATHS_URL = `${DATA_BASE_PATH}icon_paths.json`, SKILLS_INDEX_URL = `${DATA_BASE_PATH}skills_index_${ACTIVE_LOCALE}.json`, JOB_DATA_URL = e => `${DATA_BASE_PATH}jobs_${ACTIVE_LOCALE}/${e}.json`, JOB_SELECTION_PLACEHOLDER_BY_LOCALE = {
+const GRID_COLUMNS = 5, DATA_BASE_PATH = "/sea/skill-simulator/data/", ICON_PATHS_URL = `${DATA_BASE_PATH}icon_paths.json`, SKILLS_INDEX_URL = `${DATA_BASE_PATH}skills_index_${ACTIVE_LOCALE}.json`, JOB_DATA_URL = e => `${DATA_BASE_PATH}jobs_${ACTIVE_LOCALE}/${e}.json`, JOB_SELECTION_PLACEHOLDER_BY_LOCALE = {
     "zh-TW": "選擇職業...",
     "en-US": "Select a Target Job...",
     "zh-CN": "选择职业...",
