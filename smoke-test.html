@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RTNW Smoke Test — Data & Assets</title>
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;background:#111;color:#eef;padding:20px}
+    h1{margin-top:0}
+    table{width:100%;border-collapse:collapse;margin-top:12px}
+    th,td{padding:8px;border:1px solid rgba(255,255,255,0.06);text-align:left}
+    .ok{color:#7fffc1}
+    .fail{color:#ff8b8b}
+    pre{background:#0b0b0b;padding:10px;border-radius:6px;overflow:auto}
+    button{padding:8px 12px;border-radius:6px;border:none;background:#2b6cff;color:white;cursor:pointer}
+  </style>
+</head>
+<body>
+  <h1>RTNW Smoke Test</h1>
+  <p>This test checks that the repository has the core JSON assets and a few example job files and icons the simulator needs.</p>
+  <div>
+    <button id="run">Run smoke test</button>
+    <button id="open" style="margin-left:8px">Open simulator (index.html)</button>
+  </div>
+  <table id="results">
+    <thead><tr><th>Check</th><th>URL</th><th>Status</th><th>Notes</th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <h3>Console output</h3>
+  <pre id="log">(logs will appear here)</pre>
+
+<script>
+const out = (s)=>{
+  const p = document.getElementById('log');
+  p.textContent += s + '\n';
+  console.log(s);
+};
+
+async function runChecks(){
+  const tbody = document.querySelector('#results tbody');
+  tbody.innerHTML = '';
+  document.getElementById('log').textContent = '';
+
+  const checks = [
+    {name:'Skills index (en-US)', url:'sea/skill-simulator/data/skills_index_en-US.json'},
+    {name:'Icon paths', url:'sea/skill-simulator/data/icon_paths.json'},
+    {name:'Engine runes', url:'sea/skill-simulator/data/engine_runes_en-US.json'},
+  ];
+
+  async function addRow(check, status, notes=''){
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${escapeHtml(check.name)}</td><td><code>${escapeHtml(check.url)}</code></td><td class="${status==='ok'?'ok':'fail'}">${status}</td><td>${escapeHtml(notes)}</td>`;
+    tbody.appendChild(tr);
+  }
+
+  function escapeHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+  // Fetch the basic files
+  for(const c of checks){
+    try{
+      out('Fetching ' + c.url);
+      const r = await fetch(c.url,{cache:'no-store'});
+      if(!r.ok) throw new Error(r.status + ' ' + r.statusText);
+      await r.text();
+      await addRow(c,'ok','Fetched successfully');
+    }catch(err){
+      out('✗ ' + c.url + ' → ' + err);
+      await addRow(c,'fail', String(err));
+    }
+  }
+
+  // Try to load skills index and probe job files
+  try{
+    const idxR = await fetch('sea/skill-simulator/data/skills_index_en-US.json',{cache:'no-store'});
+    if(idxR.ok){
+      const idx = await idxR.json();
+      out('Loaded skills index — locating job IDs');
+      const jobs = idx.jobs || idx;
+      const keys = Object.keys(jobs||{}).filter(Boolean);
+      out('Found ' + keys.length + ' jobs in index');
+      const sample = keys.slice(0,5);
+      if(sample.length===0) out('No job IDs found in index');
+      for(const id of sample){
+        const paths = [
+          `data/jobs_en-US/${id}.json`,
+          `sea/skill-simulator/data/jobs_en-US/${id}.json`
+        ];
+        let ok=false; let notes='';
+        for(const p of paths){
+          try{
+            const r = await fetch(p,{cache:'no-store'});
+            if(r.ok){ ok=true; notes = 'Found at ' + p; out('✓ job ' + id + ' at ' + p); break; }
+          }catch(e){/*ignore*/}
+        }
+        await addRow({name:'Job data sample: ' + id, url:paths.join('  |  ')}, ok? 'ok' : 'fail', notes || 'Not found');
+      }
+    }
+  }catch(e){ out('Could not parse skills index: ' + e); }
+
+  // Probe icon paths: try first few icons
+  try{
+    const ipR = await fetch('sea/skill-simulator/data/icon_paths.json',{cache:'no-store'});
+    if(ipR.ok){
+      const ip = await ipR.json();
+      const keys = Object.keys(ip).slice(0,10);
+      out('Probing ' + keys.length + ' icons');
+      for(const k of keys){
+        const p = ip[k];
+        const url = 'media/images/' + p;
+        try{
+          const r = await fetch(url,{cache:'no-store'});
+          if(r.ok){
+            await addRow({name:'Icon: ' + k, url}, 'ok', 'Found');
+            out('✓ icon ' + k + ' → ' + url);
+          }else{
+            await addRow({name:'Icon: ' + k, url}, 'fail', r.status + ' ' + r.statusText);
+            out('✗ icon ' + k + ' → ' + r.status);
+          }
+        }catch(err){
+          await addRow({name:'Icon: ' + k, url}, 'fail', err.toString());
+          out('✗ icon ' + k + ' → ' + err);
+        }
+      }
+    }
+  }catch(e){ out('Icon paths JSON missing or invalid: ' + e); }
+
+  out('Smoke test finished');
+}
+
+document.getElementById('run').addEventListener('click', runChecks);
+document.getElementById('open').addEventListener('click', ()=>window.open('index.html','_blank'));
+
+// auto-run on load
+runChecks().catch(e=>out('Smoke test failed: '+e));
+</script>
+</body>
+</html>

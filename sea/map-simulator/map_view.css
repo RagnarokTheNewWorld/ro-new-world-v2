@@ -1,0 +1,319 @@
+/* RO Maps — layout + mobile overhaul (Phase 8) */
+
+.map-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
+  gap: 12px;
+  align-items: start;
+}
+
+.map-panel {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.map-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.map-toolbar .quick-select-wrapper {
+  display: grid;
+  gap: 4px;
+  flex: 1 1 200px;
+  min-width: 0;
+}
+
+.map-toolbar label {
+  font-size: 0.8rem;
+  color: var(--ro-muted, #9a9278);
+  font-weight: 600;
+}
+
+.map-canvas-wrap {
+  min-width: 0;
+}
+
+.map-shell {
+  position: relative;
+  width: 100%;
+  height: min(70vh, 720px);
+  overflow: hidden;
+  background: #0a1018;
+  border: 3px solid var(--ro-panel-edge-dark, #0a1018);
+  border-radius: 2px;
+  box-shadow: inset 1px 1px 0 rgba(255,255,255,0.06);
+  touch-action: none;
+  overscroll-behavior: contain;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.map-shell[data-dragging="true"] {
+  cursor: grabbing;
+}
+
+.map-stage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+.map-image {
+  display: block;
+  max-width: none;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+.map-subregions {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.map-markers {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.map-zoom-reset {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 5;
+  min-height: 36px;
+  padding: 6px 12px;
+  border: 2px solid var(--ro-panel-edge-dark, #0a1018);
+  border-radius: 2px;
+  background: linear-gradient(180deg, #4a6ab0, #2a4478);
+  color: #f5f0dc;
+  font-weight: 700;
+  font-size: 0.8rem;
+  cursor: pointer;
+  box-shadow: 0 2px 0 #152440;
+}
+
+.map-zoom-reset:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+/* Markers — larger hit targets on touch */
+.map-markers button,
+.map-markers .map-marker,
+.map-marker-quest,
+.map-marker-chest,
+.map-marker-monster {
+  min-width: 28px;
+  min-height: 28px;
+  touch-action: manipulation;
+}
+
+.map-filter-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: sticky;
+  top: calc(var(--sticky-header-height, 56px) + 8px);
+  align-self: start;
+  max-height: calc(100dvh - var(--sticky-header-height, 56px) - 24px);
+  overflow: auto;
+}
+
+.map-filter-panel {
+  background: var(--ro-panel-inner, #162033);
+  border: 2px solid var(--ro-panel-edge-dark, #0a1018);
+  border-radius: 2px;
+  padding: 12px;
+  box-shadow: inset 1px 1px 0 rgba(255,255,255,0.06);
+}
+
+.map-filter-panel h2 {
+  margin: 0 0 10px;
+  font-size: 0.85rem;
+  color: var(--ro-gold-bright, #f0d878);
+  font-weight: 800;
+}
+
+.map-options {
+  display: grid;
+  gap: 8px;
+}
+
+.map-hide-checked-toggle {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-size: 0.85rem;
+  color: var(--ro-text, #e8e0c8);
+  cursor: pointer;
+}
+
+.map-hide-checked-toggle input {
+  margin-top: 3px;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  accent-color: #3d6ec4;
+}
+
+.map-filters {
+  display: grid;
+  gap: 8px;
+}
+
+.map-count {
+  font-size: 0.8rem;
+  color: var(--ro-muted, #9a9278);
+}
+
+.map-mark-type-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.map-mark-type-row button,
+.map-mark-type-row label {
+  min-height: 36px;
+  padding: 6px 10px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 2px;
+  background: rgba(0,0,0,0.25);
+  color: var(--ro-text, #e8e0c8);
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+/* Mobile filter sheet toggle (hidden on desktop) */
+.map-mobile-filters-btn {
+  display: none;
+}
+
+.map-mobile-sheet-backdrop {
+  display: none;
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 900px) {
+  .map-layout {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  body.ro-shell.map-page .app,
+  body.ro-shell .app:has(.map-layout) {
+    padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .map-shell {
+    height: calc(100dvh - var(--sticky-header-height, 64px) - 120px);
+    min-height: 280px;
+    max-height: none;
+  }
+
+  .map-filter-stack {
+    position: static;
+    max-height: none;
+    overflow: visible;
+  }
+
+  /* Bottom sheet for filters */
+  .map-filter-stack {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 80;
+    max-height: min(55dvh, 420px);
+    overflow: auto;
+    padding: 12px 12px calc(12px + env(safe-area-inset-bottom, 0px));
+    background: var(--ro-panel-face, #1c2638);
+    border-top: 3px solid var(--ro-panel-edge-dark, #0a1018);
+    box-shadow: 0 -8px 24px rgba(0,0,0,0.45);
+    transform: translateY(calc(100% - 48px));
+    transition: transform 0.22s ease;
+  }
+
+  .map-filter-stack.is-open {
+    transform: translateY(0);
+  }
+
+  .map-filter-stack::before {
+    content: "Filters & options";
+    display: block;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ro-gold-bright, #f0d878);
+    padding-bottom: 8px;
+    cursor: pointer;
+  }
+
+  .map-mobile-filters-btn {
+    display: inline-flex;
+    position: absolute;
+    left: 10px;
+    bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+    z-index: 6;
+    min-height: 40px;
+    padding: 8px 14px;
+    border: 2px solid var(--ro-panel-edge-dark, #0a1018);
+    border-radius: 2px;
+    background: linear-gradient(180deg, #e0c060, #a88828);
+    color: #1a1408;
+    font-weight: 800;
+    font-size: 0.85rem;
+    cursor: pointer;
+    box-shadow: 0 2px 0 #5a4810;
+  }
+
+  .map-zoom-reset {
+    top: auto;
+    bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+    right: 10px;
+    min-height: 40px;
+  }
+
+  .map-markers button,
+  .map-markers .map-marker,
+  .map-marker-quest,
+  .map-marker-chest,
+  .map-marker-monster {
+    min-width: 36px;
+    min-height: 36px;
+  }
+}
+
+@media (max-width: 900px) {
+  /* When sheet open, dim map slightly via backdrop sibling if present */
+  .map-mobile-sheet-backdrop.is-on {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    background: rgba(0,0,0,0.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map-filter-stack {
+    transition: none;
+  }
+}

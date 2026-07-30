@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>RO World Journey — Gamehub</title>
+  <meta name="description" content="Classic Ragnarok Online World Journey gamehub: skill planner, maps, equipment, cards, monster album, events, study quiz, and affix planner.">
+  <meta name="keywords" content="Ragnarok Online, RO World Journey, skill planner, maps, cards, equipment, monster album, quiz">
+  <meta name="theme-color" content="#1a3568">
+  <link rel="canonical" href="https://ro-new-world.vercel.app/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="RO World Journey">
+  <meta property="og:title" content="RO World Journey — Gamehub">
+  <meta property="og:description" content="Skill, maps, equipment, cards, monsters, events, study quiz and affix tools for Ragnarok Online World Journey.">
+  <meta property="og:url" content="https://ro-new-world.vercel.app/">
+  <meta property="og:image" content="https://ro-new-world.vercel.app/media/images/zhujiemian/icon_zhujiemian_jineng.webp">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="zh_TW">
+  <meta property="og:locale:alternate" content="zh_CN">
+  <meta property="og:locale:alternate" content="th_TH">
+  <meta property="og:locale:alternate" content="id_ID">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="RO World Journey — Gamehub">
+  <meta name="twitter:description" content="Classic RO-style planners and databases for World Journey.">
+  <meta name="twitter:image" content="https://ro-new-world.vercel.app/media/images/zhujiemian/icon_zhujiemian_jineng.webp">
+
+  <link rel="stylesheet" href="/media/fonts/noto-sans-tc.css">
+  <link rel="stylesheet" href="/shared/ro-ui.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "RO World Journey Gamehub",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "Web",
+    "description": "Skill planner, interactive maps, equipment, cards, monster album, events, study quiz and affix planner for Ragnarok Online World Journey.",
+    "url": "/",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#1a3568">
+  <meta name="robots" content="index,follow">
+  <link rel="apple-touch-icon" href="/media/images/zhujiemian/icon_zhujiemian_jineng.webp">
+</head>
+<body class="ro-hub hub-body">
+  <a class="ro-skip-link" href="#main">Skip to content</a>
+  <div class="ro-app app">
+    <header class="ro-header header">
+      <div class="ro-header-top">
+        <div class="ro-brand header-brand">
+          <img class="ro-brand-logo header-logo" src="/media/images/zhujiemian/icon_zhujiemian_jineng.webp" alt="" width="44" height="44" data-icon-name="icon_logo">
+          <div class="ro-brand-text">
+            <span class="ro-brand-title header-title" data-hub-brand>RO World Journey</span>
+            <span class="ro-brand-sub">Classic gamehub · planners &amp; databases</span>
+          </div>
+        </div>
+        <div class="header-controls">
+          <button type="button" class="ro-btn ro-btn-gold" id="share-link-btn" data-share-link title="Copy link">Share</button>
+        </div>
+      </div>
+
+      <nav class="site-nav" aria-label="Site tools">
+        <a class="site-nav-item" href="/sea/skill_planner/" title="Skill Planner" aria-label="Skill Planner">
+          <img width="36" height="36" alt="" src="/media/images/zhujiemian/icon_zhujiemian_jineng.webp" data-icon-name="icon_zhujiemian_jineng">
+          <span class="site-nav-label">Skill Planner</span>
+        </a>
+        <a class="site-nav-item" href="/sea/affix_planner/" title="Affix Planner" aria-label="Affix Planner">
+          <img width="36" height="36" alt="" src="/media/images/zhujiemian/icon_zhujiemian_chongwuzhuangbei.webp" data-icon-name="icon_zhujiemian_chongwuzhuangbei">
+          <span class="site-nav-label">Affix Planner</span>
+        </a>
+        <a class="site-nav-item" href="/sea/equipment/" title="Equipment" aria-label="Equipment">
+          <img width="36" height="36" alt="" src="/media/images/zhujiemian/icon_zhujiemian_jingji.webp" data-icon-name="icon_zhujiemian_jingji">
+          <span class="site-nav-label">Equipment</span>
+        </a>
+        <a class="site-nav-item" href="/sea/cards/" title="Cards" aria-label="Cards">
+          <img width="36" height="36" alt="" src="/media/images/zhujiemian/icon_zhujiemian_tujian.webp" data-icon-name="icon_zhujiemian_tujian">
+          <span class="site-nav-label">Cards</span>
+        </a>
+        <a class="site-nav-item" href="/sea/monster_album/" title="Monster Album" aria-label="Monster Album">
+          <img width="36" height="36" alt="" src="/media/images/zhujiemian/icon_zhujiemian_fuben.webp" data-icon-name="icon_zhujiemian_fuben">
+          <span class="site-nav-label">Monster Album</span>
+        </a>
+        <a class="site-nav-item" href="/sea/maps/" title="Maps" aria-label="Maps">
+          <img width="36" height="36" alt="" src="/media/images/zhujiemian/icon_zhujiemian_miwusenlin.webp" data-icon-name="icon_zhujiemian_miwusenlin">
+          <span class="site-nav-label">Maps</span>
+        </a>
+        <a class="site-nav-item" href="/sea/events/" title="Events" aria-label="Events">
+          <img width="36" height="36" alt="" src="/media/images/zhujiemian/icon_zhujiemian_huodong.webp" data-icon-name="icon_zhujiemian_huodong">
+          <span class="site-nav-label">Events</span>
+        </a>
+        <a class="site-nav-item" href="/sea/study/" title="Study" aria-label="Study">
+          <img width="36" height="36" alt="" src="/media/images/zhujiemian/icon_zhujiemian_shitu.webp" data-icon-name="icon_zhujiemian_shitu">
+          <span class="site-nav-label">Study</span>
+        </a>
+      </nav>
+    </header>
+
+    <main id="main" id="main">
+      <div class="ro-window ro-hub-intro">
+        <div class="ro-window-title">
+          <img class="ro-window-title-icon" src="/media/images/zhujiemian/icon_zhujiemian_jineng.webp" alt="">
+          <span class="ro-window-title-text">Adventurer Menu</span>
+          <span class="ro-window-title-actions" aria-hidden="true">
+            <span class="ro-win-btn">_</span>
+            <span class="ro-win-btn">□</span>
+            <span class="ro-win-btn">×</span>
+          </span>
+        </div>
+        <div class="ro-window-body">
+          <p>Choose a tool below. Skill trees, maps, gear, cards, monsters, events, quiz answers, and affixes — styled like classic Ragnarok Online windows.</p>
+          <div class="ro-hub-toolbar" style="margin-top:12px;margin-bottom:0">
+            <label for="hub-search" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Filter tools</label>
+            <input class="ro-search" id="hub-search" type="search" placeholder="Filter tools…" autocomplete="off" enterkeyhint="search">
+          </div>
+        </div>
+      </div>
+
+      <section class="hub-grid ro-hub-grid" style="margin-top:14px" aria-label="Tools">
+        <a class="hub-card ro-tool-card" data-ro-tooltip data-ro-name="Skill Planner" data-ro-type="Game tool" data-ro-desc="Plan job skills, prerequisites and point spend." data-ro-icon="/media/images/zhujiemian/icon_zhujiemian_jineng.webp" data-ro-rarity="unique" href="/sea/skill_planner/" data-hub-name="Skill Planner">
+          <div class="hub-card-titlebar"><span class="hub-card-titlebar-label">Skill Planner</span></div>
+          <div class="hub-card-main">
+            <span class="hub-card-icon"><img src="/media/images/zhujiemian/icon_zhujiemian_jineng.webp" alt="" width="40" height="40"></span>
+            <span class="hub-card-body">
+              <span class="hub-card-title">Skill Planner</span>
+              <span class="hub-card-desc">Plan job skills, prerequisites and point spend.</span>
+            </span>
+          </div>
+        </a>
+
+        <a class="hub-card ro-tool-card" data-ro-tooltip data-ro-name="Affix Planner" data-ro-type="Game tool" data-ro-desc="Browse and plan stunt / affix packages." data-ro-icon="/media/images/zhujiemian/icon_zhujiemian_chongwuzhuangbei.webp" data-ro-rarity="unique" href="/sea/affix_planner/" data-hub-name="Affix Planner">
+          <div class="hub-card-titlebar"><span class="hub-card-titlebar-label">Affix Planner</span></div>
+          <div class="hub-card-main">
+            <span class="hub-card-icon"><img src="/media/images/zhujiemian/icon_zhujiemian_chongwuzhuangbei.webp" alt="" width="40" height="40"></span>
+            <span class="hub-card-body">
+              <span class="hub-card-title">Affix Planner</span>
+              <span class="hub-card-desc">Browse and plan stunt / affix packages.</span>
+            </span>
+          </div>
+        </a>
+
+        <a class="hub-card ro-tool-card" data-ro-tooltip data-ro-name="Equipment" data-ro-type="Game tool" data-ro-desc="Explore gear, stats and set bonuses." data-ro-icon="/media/images/zhujiemian/icon_zhujiemian_jingji.webp" data-ro-rarity="unique" href="/sea/equipment/" data-hub-name="Equipment">
+          <div class="hub-card-titlebar"><span class="hub-card-titlebar-label">Equipment</span></div>
+          <div class="hub-card-main">
+            <span class="hub-card-icon"><img src="/media/images/zhujiemian/icon_zhujiemian_jingji.webp" alt="" width="40" height="40"></span>
+            <span class="hub-card-body">
+              <span class="hub-card-title">Equipment</span>
+              <span class="hub-card-desc">Explore gear, stats and set bonuses.</span>
+            </span>
+          </div>
+        </a>
+
+        <a class="hub-card ro-tool-card" data-ro-tooltip data-ro-name="Cards" data-ro-type="Game tool" data-ro-desc="Card library and fusion simulator." data-ro-icon="/media/images/zhujiemian/icon_zhujiemian_tujian.webp" data-ro-rarity="unique" href="/sea/cards/" data-hub-name="Cards">
+          <div class="hub-card-titlebar"><span class="hub-card-titlebar-label">Cards</span></div>
+          <div class="hub-card-main">
+            <span class="hub-card-icon"><img src="/media/images/zhujiemian/icon_zhujiemian_tujian.webp" alt="" width="40" height="40"></span>
+            <span class="hub-card-body">
+              <span class="hub-card-title">Cards</span>
+              <span class="hub-card-desc">Card library and fusion simulator.</span>
+            </span>
+          </div>
+        </a>
+
+        <a class="hub-card ro-tool-card" data-ro-tooltip data-ro-name="Monster Album" data-ro-type="Game tool" data-ro-desc="Look up monsters and their drops." data-ro-icon="/media/images/zhujiemian/icon_zhujiemian_fuben.webp" data-ro-rarity="unique" href="/sea/monster_album/" data-hub-name="Monster Album">
+          <div class="hub-card-titlebar"><span class="hub-card-titlebar-label">Monster Album</span></div>
+          <div class="hub-card-main">
+            <span class="hub-card-icon"><img src="/media/images/zhujiemian/icon_zhujiemian_fuben.webp" alt="" width="40" height="40"></span>
+            <span class="hub-card-body">
+              <span class="hub-card-title">Monster Album</span>
+              <span class="hub-card-desc">Look up monsters and their drops.</span>
+            </span>
+          </div>
+        </a>
+
+        <a class="hub-card ro-tool-card" data-ro-tooltip data-ro-name="Maps" data-ro-type="Game tool" data-ro-desc="Interactive maps: marks, spawns and quests." data-ro-icon="/media/images/zhujiemian/icon_zhujiemian_miwusenlin.webp" data-ro-rarity="unique" href="/sea/maps/" data-hub-name="Maps">
+          <div class="hub-card-titlebar"><span class="hub-card-titlebar-label">Maps</span></div>
+          <div class="hub-card-main">
+            <span class="hub-card-icon"><img src="/media/images/zhujiemian/icon_zhujiemian_miwusenlin.webp" alt="" width="40" height="40"></span>
+            <span class="hub-card-body">
+              <span class="hub-card-title">Maps</span>
+              <span class="hub-card-desc">Interactive maps: marks, spawns &amp; quests.</span>
+            </span>
+          </div>
+        </a>
+
+        <a class="hub-card ro-tool-card" data-ro-tooltip data-ro-name="Events" data-ro-type="Game tool" data-ro-desc="Event schedules and activity info." data-ro-icon="/media/images/zhujiemian/icon_zhujiemian_huodong.webp" data-ro-rarity="unique" href="/sea/events/" data-hub-name="Events">
+          <div class="hub-card-titlebar"><span class="hub-card-titlebar-label">Events</span></div>
+          <div class="hub-card-main">
+            <span class="hub-card-icon"><img src="/media/images/zhujiemian/icon_zhujiemian_huodong.webp" alt="" width="40" height="40"></span>
+            <span class="hub-card-body">
+              <span class="hub-card-title">Events</span>
+              <span class="hub-card-desc">Event schedules and activity info.</span>
+            </span>
+          </div>
+        </a>
+
+        <a class="hub-card ro-tool-card" data-ro-tooltip data-ro-name="Study" data-ro-type="Game tool" data-ro-desc="Quiz answers: banquet, scholar exam and more." data-ro-icon="/media/images/zhujiemian/icon_zhujiemian_shitu.webp" data-ro-rarity="unique" href="/sea/study/" data-hub-name="Study">
+          <div class="hub-card-titlebar"><span class="hub-card-titlebar-label">Study</span></div>
+          <div class="hub-card-main">
+            <span class="hub-card-icon"><img src="/media/images/zhujiemian/icon_zhujiemian_shitu.webp" alt="" width="40" height="40"></span>
+            <span class="hub-card-body">
+              <span class="hub-card-title">Study</span>
+              <span class="hub-card-desc">Quiz answers: banquet, scholar exam &amp; more.</span>
+            </span>
+          </div>
+        </a>
+      </section>
+
+      <p class="hub-empty ro-hub-empty" id="hub-empty" hidden>No tools match your search.</p>
+    </main>
+
+    <footer class="ro-footer">
+      <span>RO World Journey database · community tools</span>
+      <span>Extra modules (Rune, Pet, Refine…) kept offline for future updates</span>
+    </footer>
+  </div>
+
+  <script src="/shared/asset_version.js"></script>
+  <script src="/shared/client_switcher.js"></script>
+  <script src="/shared/sticky_header.js"></script>
+      <script src="/shared/ro-tooltip.js"></script>
+    <script src="/shared/ro-search.js"></script>
+    <script src="/shared/ro-favorites.js"></script>
+    <script src="/shared/ro-links.js"></script>
+    <script src="/shared/ro-pwa.js"></script>
+    <script src="/shared/ro-deeplink.js"></script>
+    <script src="/shared/share_link.js"></script>
+  <script>
+    (function () {
+      function syncCardTitles() {
+        var navLabels = {};
+        document.querySelectorAll(".site-nav-item[href]").forEach(function (nav) {
+          var label = nav.querySelector(".site-nav-label");
+          if (label) navLabels[nav.getAttribute("href").split("?")[0]] = label.textContent.trim();
+        });
+        document.querySelectorAll(".hub-card[href]").forEach(function (card) {
+          var key = card.getAttribute("href").split("?")[0];
+          var localized = navLabels[key];
+          if (!localized) return;
+          var title = card.querySelector(".hub-card-title");
+          var bar = card.querySelector(".hub-card-titlebar-label");
+          if (title) title.textContent = localized;
+          if (bar) bar.textContent = localized;
+          card.setAttribute("data-hub-name", localized);
+        });
+      }
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", syncCardTitles, { once: true });
+      } else {
+        syncCardTitles();
+      }
+    })();
+
+    (function () {
+      var input = document.getElementById("hub-search");
+      var empty = document.getElementById("hub-empty");
+      if (!input) return;
+      function apply() {
+        var q = input.value.trim().toLowerCase();
+        var shown = 0;
+        document.querySelectorAll(".hub-card").forEach(function (card) {
+          var name = (card.getAttribute("data-hub-name") || "").toLowerCase();
+          var descNode = card.querySelector(".hub-card-desc");
+          var desc = descNode ? descNode.textContent.toLowerCase() : "";
+          var match = !q || name.indexOf(q) > -1 || desc.indexOf(q) > -1;
+          card.hidden = !match;
+          if (match) shown++;
+        });
+        if (empty) empty.hidden = shown !== 0;
+      }
+      input.addEventListener("input", apply);
+    })();
+  </script>
+
+  <footer class="ro-hub-footer" style="text-align:center;margin:20px 0 8px;color:var(--ro-muted);font-size:0.75rem">
+    RO World Journey Gamehub · Search <kbd>/</kbd> · Favorites · Offline-ready
+  </footer>
+
+</body>
+</html>

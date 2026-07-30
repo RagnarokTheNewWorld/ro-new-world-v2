@@ -1,0 +1,134 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": true,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    },
+    {
+      "source": "/sw.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        },
+        {
+          "key": "Service-Worker-Allowed",
+          "value": "/"
+        }
+      ]
+    },
+    {
+      "source": "/manifest.webmanifest",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/manifest+json; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
+      ]
+    },
+    {
+      "source": "/media/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/sea/(.*).json",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
+      ]
+    },
+    {
+      "source": "/shared/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/sea/skill_planner",
+      "destination": "/sea/skill_planner/index.html"
+    },
+    {
+      "source": "/sea/affix_planner",
+      "destination": "/sea/affix_planner/index.html"
+    },
+    {
+      "source": "/sea/equipment",
+      "destination": "/sea/equipment/index.html"
+    },
+    {
+      "source": "/sea/cards",
+      "destination": "/sea/cards/index.html"
+    },
+    {
+      "source": "/sea/monster_album",
+      "destination": "/sea/monster_album/index.html"
+    },
+    {
+      "source": "/sea/maps",
+      "destination": "/sea/maps/index.html"
+    },
+    {
+      "source": "/sea/events",
+      "destination": "/sea/events/index.html"
+    },
+    {
+      "source": "/sea/study",
+      "destination": "/sea/study/index.html"
+    },
+    {
+      "source": "/sea/equipment/equipment",
+      "destination": "/sea/equipment/index.html"
+    },
+    {
+      "source": "/sea/cards/cards",
+      "destination": "/sea/cards/index.html"
+    },
+    {
+      "source": "/sea/monster_album/monster_album",
+      "destination": "/sea/monster_album/index.html"
+    },
+    {
+      "source": "/sea/events/events",
+      "destination": "/sea/events/index.html"
+    },
+    {
+      "source": "/sea/study/study",
+      "destination": "/sea/study/index.html"
+    },
+    {
+      "source": "/sea/skill_planner/skill_planner",
+      "destination": "/sea/skill_planner/index.html"
+    },
+    {
+      "source": "/sea/affix_planner/affix_planner",
+      "destination": "/sea/affix_planner/index.html"
+    }
+  ]
+}
